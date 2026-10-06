@@ -1,0 +1,217 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   DESIGN TOKENS
+   Aksen utama: #2c67ed
+   ============================================================ */
+@theme {
+  --color-accent: #2c67ed;
+  --color-accent-light: #5b8cff;
+  --color-accent-dark: #1b47ad;
+  --color-accent-soft: #2c67ed26;
+
+  --color-void: #05060c;
+  --color-void-2: #080b16;
+  --color-void-3: #0c1020;
+  --color-surface: #0e1322;
+
+  --color-star: #e8eeff;
+  --color-muted: #8a94b2;
+
+  --font-display: 'Orbitron', system-ui, sans-serif;
+  --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-drift: drift 14s linear infinite;
+  --animate-spin-slow: spin 26s linear infinite;
+  --animate-spin-slower: spin 60s linear infinite;
+  --animate-pulse-glow: pulse-glow 3.4s ease-in-out infinite;
+  --animate-blink: blink 1.05s steps(2, start) infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100vw, 0, 0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes blink {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2c67ed55 transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-void font-sans text-muted antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #2c67ed;
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05060c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(#2c67ed, #1b47ad);
+    border-radius: 99px;
+  }
+
+  /* Offset anchor supaya tidak ketutup navbar melayang */
+  section[id] {
+    scroll-margin-top: 7rem;
+  }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+@utility glass {
+  background: linear-gradient(
+    145deg,
+    rgb(255 255 255 / 0.06),
+    rgb(255 255 255 / 0.015)
+  );
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgb(255 255 255 / 0.08);
+}
+
+@utility glass-hover {
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+  &:hover {
+    border-color: rgb(44 103 237 / 0.55);
+    box-shadow:
+      0 0 0 1px rgb(44 103 237 / 0.18),
+      0 18px 60px -18px rgb(44 103 237 / 0.45);
+  }
+}
+
+@utility glow-accent {
+  box-shadow:
+    0 0 20px rgb(44 103 237 / 0.45),
+    0 0 60px rgb(44 103 237 / 0.25);
+}
+
+@utility text-glow {
+  text-shadow:
+    0 0 18px rgb(44 103 237 / 0.75),
+    0 0 46px rgb(44 103 237 / 0.35);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, #ffffff 0%, #9db8ff 40%, #2c67ed 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grid-space {
+  background-image:
+    linear-gradient(rgb(44 103 237 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(44 103 237 / 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
