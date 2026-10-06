@@ -37,8 +37,8 @@ function Counter({ value, suffix = '', duration = 1600 }) {
 function PosterHero() {
   const [error, setError] = useState(false)
   const posterPhoto = '/Foto%20Saya.png'
-  const fontAnton = { fontFamily: '"Anton", Impact, sans-serif' }
-  const fontScript = { fontFamily: '"Mr De Haviland", cursive' }
+  const fontAnton = { fontFamily: 'Anton' }
+  const fontScript = { fontFamily: 'Mr De Haviland' }
 
   return (
     <Reveal>
@@ -65,7 +65,7 @@ function PosterHero() {
   lengthAdjust="spacingAndGlyphs"
   fill="url(#portfolioGradient)"
   fontSize="340"
-  fontFamily='"Anton", Impact, sans-serif'
+  fontFamily="Anton"
 >
   PORTOFOLIO
 </text>
